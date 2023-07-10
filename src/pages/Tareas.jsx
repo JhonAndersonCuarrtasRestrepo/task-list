@@ -1,85 +1,21 @@
 import React, { useState } from 'react';
 import '../style/Tareas.css'
+import useTask from '../hooks/UseTask';
 
 function Tareas() {
-  const [taskName, setTaskName] = useState('');
-  const [taskDescription, setTaskDescription] = useState('');
-  const [tasks, setTasks] = useState([]);
-  const [editingTaskId, setEditingTaskId] = useState(null);
-  const [errorMessage, setErrorMessage] = useState('');
-
-  const handleTaskNameChange = (event) => {
-    const name = event.target.value;
-    setTaskName(name);
-    if (name.length < 3) {
-      setErrorMessage('Debe tener mínimo 3 caracteres');
-    } else {
-      setErrorMessage('');
-    }
-  };
-
-  const handleTaskDescriptionChange = (event) => {
-    setTaskDescription(event.target.value);
-  };
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-
-    if (taskName.length < 3) {
-      setErrorMessage('El nombre de la tarea debe tener al menos 3 caracteres');
-      return;
-    }
-
-    if (editingTaskId !== null) {
-      // Editar tarea existente
-      const updatedTasks = tasks.map((task) => {
-        if (task.id === editingTaskId) {
-          return { ...task, name: taskName, description: taskDescription };
-        }
-        return task;
-      });
-      setTasks(updatedTasks);
-      setEditingTaskId(null);
-    } else {
-      // Agregar nueva tarea
-      const newTask = {
-        id: Date.now(),
-        name: taskName,
-        description: taskDescription,
-        completed: false, // Nuevo campo para el estado de completado
-      };
-      setTasks([...tasks, newTask]);
-    }
-
-    // Restablecer los valores de los inputs a su estado inicial
-    setTaskName('');
-    setTaskDescription('');
-    setErrorMessage('');
-  };
-
-  const handleEditTask = (taskId) => {
-    const taskToEdit = tasks.find((task) => task.id === taskId);
-    if (taskToEdit) {
-      setTaskName(taskToEdit.name);
-      setTaskDescription(taskToEdit.description);
-      setEditingTaskId(taskId);
-    }
-  };
-
-  const handleDeleteTask = (taskId) => {
-    const updatedTasks = tasks.filter((task) => task.id !== taskId);
-    setTasks(updatedTasks);
-  };
-
-  const handleToggleComplete = (taskId) => {
-    const updatedTasks = tasks.map((task) => {
-      if (task.id === taskId) {
-        return { ...task, completed: !task.completed };
-      }
-      return task;
-    });
-    setTasks(updatedTasks);
-  };
+    const {
+      taskName,
+      taskDescription,
+      tasks,
+      errorMessage,
+      editingTaskId,
+      handleTaskNameChange,
+      handleTaskDescriptionChange,
+      handleSubmit,
+      handleEditTask,
+      handleDeleteTask,
+      handleToggleComplete,
+    } = useTask();
 
   return (
   <div>
@@ -101,7 +37,7 @@ function Tareas() {
     {tasks.map((task) => (
       <div key={task.id} className='task'>
         <h3>{task.name}</h3>
-        <p>{task.description}</p>
+        <p className={task.completed ? 'completado' : ''}>{task.description}</p>
         <input type="checkbox" className='checkList' checked={task.completed} onChange={() => handleToggleComplete(task.id)} />
         <button className='botonGuardar' onClick={() => handleEditTask(task.id)}>Editar</button>
         <button className='botonGuardar' onClick={() => handleDeleteTask(task.id)}>Eliminar</button>

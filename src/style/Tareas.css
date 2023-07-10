@@ -69,6 +69,23 @@ p{
     font-size: 20px;
 }
 
+.links li{
+    display: inline-block;
+    margin-right: 10px;
+    background-color: #483f6e;
+    border-radius: 5px;
+    padding: 4px;
+    
+}
+
+.colorTexto{
+    color: white;
+}
+
 .checkList{
     width: 30px;
+}
+
+.completado {
+  text-decoration: line-through;
 }

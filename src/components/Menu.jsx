@@ -5,13 +5,13 @@ export function Menu(){
         <nav>
             <ul className="links">
                 <li>
-                    <Link to="/">Home</Link>
+                    <Link className="colorTexto" to="/">Home</Link>
                 </li>
                 <li>
-                    <Link to="/sobre-nosotros">Sobre Nosotros</Link>
+                    <Link className="colorTexto" to="/sobre-nosotros">Sobre Nosotros</Link>
                 </li>
                 <li>
-                    <Link to="/tareas">App Tareas</Link>
+                    <Link className="colorTexto" to="/tareas">App Tareas</Link>
                 </li>
             </ul>
         </nav>
