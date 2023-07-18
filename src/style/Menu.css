@@ -1,0 +1,28 @@
+.colorTexto{
+    color: rgb(220, 220, 220);
+    font-size: 25px;
+}
+
+.links{
+    list-style: none;
+    margin-left: -40px;
+    font-size: 20px;
+    
+}
+
+a:hover{
+    background-color: rgb(220, 220, 220);
+    color: black;
+    border-radius: 3px;
+    padding: 3px 2px 3px 2px;
+}
+
+.links li{
+    display: inline-block;
+    margin-right: 10px;
+    background-color: #483f6e;
+    border-radius: 5px;
+    padding: 4px;
+    background-color: transparent;
+    color: rgb(220, 220, 220);
+}

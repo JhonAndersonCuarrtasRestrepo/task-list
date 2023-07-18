@@ -2,18 +2,12 @@ body{
     background-image:url(../images/imagenDeFondo.jpg);
 }   
 
-h1{
-    color: rgb(255, 255, 245);
-    text-decoration:underline;
-}
-
 .formFather{
     border: 1px rgb(153, 153, 153) solid;
     background-color: #231d3e;
     border-radius: 8px;
     width: 600px;
     min-height: 150px;
-    /* Centra los elementos */
     margin: 0 auto;
 }
 
@@ -31,7 +25,6 @@ h1{
     border-radius: 8px;
     width: 600px;
     min-height: 150px;
-    /* Centra los elementos */
     margin: 0 auto;
     color: white;
 }
@@ -61,25 +54,6 @@ p{
 
 .botonGuardar{
     margin-bottom: 15px;
-}
-
-.links{
-    list-style: none;
-    margin-left: -40px;
-    font-size: 20px;
-}
-
-.links li{
-    display: inline-block;
-    margin-right: 10px;
-    background-color: #483f6e;
-    border-radius: 5px;
-    padding: 4px;
-    
-}
-
-.colorTexto{
-    color: white;
 }
 
 .checkList{

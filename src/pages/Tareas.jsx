@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import '../style/Tareas.css'
 import useTask from '../hooks/UseTask';
+import { Text, Button, Textarea, Input, VStack, Center } from "@chakra-ui/react";
 
 function Tareas() {
     const {
@@ -19,28 +20,30 @@ function Tareas() {
 
   return (
   <div>
-    <h1>Todo App</h1>
+    <Text backgroundColor="transparent" fontSize="55" color="rgb(220, 220, 220)" textAlign="center">Todo App</Text>
     <form onSubmit={handleSubmit} className='formFather'>
-      <div>
+      <VStack>
         <label htmlFor="taskName">Nombre de la tarea:</label>
-        <input type="text" id="taskName" value={taskName} onChange={handleTaskNameChange} />
+        <Input type="text" id="taskName" value={taskName} onChange={handleTaskNameChange} />
         {errorMessage && <p>{errorMessage}</p>}
-      </div>
-      <div>
+      </VStack>
+      <VStack>
         <label htmlFor="taskDescription">Descripción de la tarea:</label>
-        <textarea id="taskDescription" value={taskDescription} onChange={handleTaskDescriptionChange} />
-      </div>
-      <div>
+        <Textarea id="taskDescription" value={taskDescription} onChange={handleTaskDescriptionChange} />
+      </VStack>
+      <VStack>
         <button className='botonGuardar' type="submit">{editingTaskId !== null ? 'Editar tarea' : 'Guardar tarea'}</button>
-      </div>
+      </VStack>
     </form>
     {tasks.map((task) => (
       <div key={task.id} className='task'>
-        <h3>{task.name}</h3>
-        <p className={task.completed ? 'completado' : ''}>{task.description}</p>
-        <input type="checkbox" className='checkList' checked={task.completed} onChange={() => handleToggleComplete(task.id)} />
-        <button className='botonGuardar' onClick={() => handleEditTask(task.id)}>Editar</button>
-        <button className='botonGuardar' onClick={() => handleDeleteTask(task.id)}>Eliminar</button>
+        <Text backgroundColor="transparent" textAlign="center" fontSize={25} mt={5}>{task.name}</Text>
+        <Text textAlign="center" className={task.completed ? 'completado' : ''}>{task.description}</Text>
+        <Center>
+        <Input w={20} type="checkbox" className='checkList' checked={task.completed} onChange={() => handleToggleComplete(task.id)} />
+        <Button className='botonGuardar' onClick={() => handleEditTask(task.id)}>Editar</Button>
+        <Button className='botonGuardar' onClick={() => handleDeleteTask(task.id)}>Eliminar</Button>
+        </Center>
       </div>
     ))}
   </div>
